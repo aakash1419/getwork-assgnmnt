@@ -28,7 +28,7 @@ const FilterPanel = () => {
                     <Typography className={classes.filterBoxSubtitle}>
                         Gurgaon, Delhi
                     </Typography>
-                    <img src={CrossIcon} />
+                    <img src={CrossIcon} alt="cross-icon" />
                 </Box>
                 <InputBase
                     className={classes.inputBox}
@@ -48,7 +48,7 @@ const FilterPanel = () => {
                     <Typography className={classes.filterBoxSubtitle}>
                         2017 - 2020
                     </Typography>
-                    <img src={CrossIcon} />
+                    <img src={CrossIcon} alt="cross-icon" />
                 </Box>
                 <InputBase
                     className={classes.inputBox}
@@ -68,7 +68,7 @@ const FilterPanel = () => {
                     <Typography className={classes.filterBoxSubtitle}>
                         IIM. Ahmedabad
                     </Typography>
-                    <img src={CrossIcon} />
+                    <img src={CrossIcon} alt="cross-icon" />
                 </Box>
                 <InputBase
                     className={classes.inputBox}
@@ -88,7 +88,7 @@ const FilterPanel = () => {
                     <Typography className={classes.filterBoxSubtitle}>
                         1 year
                     </Typography>
-                    <img src={CrossIcon} />
+                    <img src={CrossIcon} alt="cross-icon" />
                 </Box>
                 <InputBase
                     className={classes.inputBox}

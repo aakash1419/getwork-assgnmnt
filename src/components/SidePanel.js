@@ -3,25 +3,18 @@ import {
     Box,
     makeStyles,
     createStyles,
-    AppBar,
-    Toolbar,
     Typography,
     Drawer,
     Divider,
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
     Button,
     Accordion,
     AccordionSummary,
     AccordionDetails,
 } from "@material-ui/core";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+
 import Logo from "../assets/images/logo.png";
 import AddIcon from "@material-ui/icons/Add";
-import ArrowDown from "../assets/images/arrow-down.png";
+
 import ArrowRight from "../assets/images/arrow-right.png";
 import HomeIcon from "../assets/images/home.png";
 import JobsIcon from "../assets/images/jobs.png";
@@ -75,7 +68,7 @@ const SidePanel = () => {
                 <div className={classes.toolbar} />
                 <Divider />
                 <Box display="flex" alignItems="center">
-                    <img src={Logo} className={classes.logo} />
+                    <img src={Logo} className={classes.logo} alt="logo" />
                     <Box className={classes.colorSelectorBox}></Box>
                 </Box>
                 <Button
@@ -92,7 +85,9 @@ const SidePanel = () => {
                                 expandIcon: classes.expandIcon,
                                 expanded: classes.expanded,
                             }}
-                            expandIcon={<img src={ArrowRight} />}
+                            expandIcon={
+                                <img src={ArrowRight} alt="arrow-right" />
+                            }
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
@@ -104,6 +99,7 @@ const SidePanel = () => {
                                 <img
                                     src={item.icon}
                                     className={classes.expandIcon}
+                                    alt="expand-icon"
                                 />
                                 <Typography
                                     className={classes.sidePanelMenuText}

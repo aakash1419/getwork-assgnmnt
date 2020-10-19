@@ -38,10 +38,10 @@ const TopPanel = () => {
                         justifyContent="space-between"
                         alignItems="center"
                     >
-                        <img src={CalendarIcon} />
-                        <img src={ChatIcon} />
-                        <img src={NotificationIcon} />
-                        <img src={ProfileIcon} />
+                        <img src={CalendarIcon} alt="calendar" />
+                        <img src={ChatIcon} alt="chat-icon" />
+                        <img src={NotificationIcon} alt="notification-icon" />
+                        <img src={ProfileIcon} alt="profile-icon" />
                     </Box>
                 </Toolbar>
             </AppBar>

@@ -111,6 +111,7 @@ const MainContent = () => {
                                                     <img
                                                         src={Dp}
                                                         className={classes.dp}
+                                                        alt="profile-picture"
                                                     />
                                                 ) : (
                                                     <img
@@ -118,6 +119,7 @@ const MainContent = () => {
                                                         src={
                                                             appItem.profile_picture
                                                         }
+                                                        alt="profile-picture"
                                                     />
                                                 )}
                                             </Box>
