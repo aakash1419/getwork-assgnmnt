@@ -105,6 +105,7 @@ const useStyles = makeStyles((theme) =>
             fontSize: "18px",
             fontWeight: "bold",
             color: "#000",
+            fontFamily: "OpenSans",
         },
         divider: {
             backgroundColor: "#BDBDBD",
@@ -121,11 +122,13 @@ const useStyles = makeStyles((theme) =>
             fontSize: "18px",
             color: "#000",
             textAlign: "left",
+            fontFamily: "Proxima",
         },
         filterBoxSubtitle: {
             fontSize: "18px",
             color: "#424242",
             margin: "4% 0%",
+            fontFamily: "Proxima",
         },
         divider2: {
             backgroundColor: "#BDBDBD",

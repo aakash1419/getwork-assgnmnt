@@ -24,7 +24,7 @@ const MainContent = () => {
         ).catch((err) => {
             throw err;
         });
-        console.log("res", res.data.data);
+
         setApplicants(res.data.data);
     };
 
@@ -51,8 +51,12 @@ const MainContent = () => {
                         inputProps={{ "aria-label": "primary checkbox" }}
                     />
                     <Box display="flex" marginRight="11%">
-                        <Button variant="text">Move to next step</Button>
-                        <Button variant="text">Move to next step</Button>
+                        <Button variant="text" className={classes.textButton}>
+                            Move to next step
+                        </Button>
+                        <Button variant="text" className={classes.textButton}>
+                            Reject
+                        </Button>
                     </Box>
                 </Box>
                 <Divider className={classes.divider} />
@@ -79,6 +83,9 @@ const MainContent = () => {
                                                         index < 3 && (
                                                             <Typography
                                                                 key={index}
+                                                                className={
+                                                                    classes.skills
+                                                                }
                                                             >
                                                                 {
                                                                     skillItem.skill_name
@@ -122,7 +129,9 @@ const MainContent = () => {
                                                     justifyContent="space-between"
                                                     alignItems="center"
                                                 >
-                                                    <Typography>
+                                                    <Typography
+                                                        className={classes.name}
+                                                    >
                                                         {appItem.first_name}
                                                     </Typography>
                                                     <Box
@@ -138,6 +147,9 @@ const MainContent = () => {
                                                                 index < 3 && (
                                                                     <Button
                                                                         variant="outlined"
+                                                                        key={
+                                                                            index
+                                                                        }
                                                                         className={
                                                                             classes.skillButton
                                                                         }
@@ -151,7 +163,9 @@ const MainContent = () => {
                                                     </Box>
                                                 </Box>
 
-                                                <Typography>
+                                                <Typography
+                                                    className={classes.degree}
+                                                >
                                                     {
                                                         appItem.education.find(
                                                             (course) =>
@@ -168,7 +182,9 @@ const MainContent = () => {
                                                         ).specialization
                                                     }
                                                 </Typography>
-                                                <Typography>
+                                                <Typography
+                                                    className={classes.college}
+                                                >
                                                     {
                                                         appItem.education.find(
                                                             (course) =>
@@ -186,7 +202,9 @@ const MainContent = () => {
                                                     }
                                                 </Typography>
 
-                                                <Typography>
+                                                <Typography
+                                                    className={classes.about}
+                                                >
                                                     {appItem.about === null
                                                         ? ""
                                                         : appItem.about}
@@ -236,6 +254,38 @@ const useStyles = makeStyles((theme) =>
             border: "1px solid #000000",
             borderRadius: "18px",
             height: "31px",
+        },
+        textButton: {
+            fontSize: "14px",
+            fontFamily: "OpenSans",
+            fontWeight: "bold",
+            textTransform: "capitalize",
+        },
+        skills: {
+            fontSize: "14px",
+            fontFamily: "Proxima",
+        },
+        name: {
+            fontSize: "14px",
+            fontFamily: "Proxima",
+            color: "#424242",
+        },
+        degree: {
+            fontSize: "14px",
+            fontFamily: "OpenSans",
+            fontWeight: "bold",
+        },
+        college: {
+            fontSize: "14px",
+            fontFamily: "OpenSans",
+            fontWeight: "bold",
+            color: "#424242",
+            margin: "1% 0%",
+        },
+        about: {
+            fontSize: "16px",
+            fontFamily: "Proxima",
+            color: "#828282",
         },
     })
 );

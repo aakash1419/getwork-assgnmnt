@@ -63,13 +63,6 @@ const SidePanel = () => {
 
     return (
         <Box>
-            {/* <AppBar position="fixed" className={classes.appBar}>
-                <Toolbar>
-                    <Typography variant="h6" noWrap>
-                        Permanent drawer
-                    </Typography>
-                </Toolbar>
-            </AppBar> */}
             <TopPanel />
             <Drawer
                 className={classes.drawer}
@@ -127,7 +120,12 @@ const SidePanel = () => {
                                 paddingLeft="33%"
                             >
                                 {item.subMenu.map((item, index) => (
-                                    <Typography key={index}>{item}</Typography>
+                                    <Typography
+                                        className={classes.submenuText}
+                                        key={index}
+                                    >
+                                        {item}
+                                    </Typography>
                                 ))}
                             </Box>
                         </AccordionDetails>
@@ -169,6 +167,7 @@ const useStyles = makeStyles((theme) =>
             boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
             borderRadius: 4,
             fontFamily: "OpenSans",
+            fontWeight: "bold",
             textTransform: "capitalize",
             color: "#fff",
             alignSelf: "center",
@@ -195,6 +194,13 @@ const useStyles = makeStyles((theme) =>
         expanded: {},
         sidePanelMenuText: {
             marginLeft: "10%",
+            fontFamily: "Proxima",
+            fontSize: "18px",
+        },
+        submenuText: {
+            fontFamily: "Proxima",
+            fontSize: "18px",
+            marginBottom: "7%",
         },
     })
 );
