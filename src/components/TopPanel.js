@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import {
     Box,
     makeStyles,
@@ -14,12 +14,29 @@ import ChatIcon from "../assets/images/top-panel/chat.png";
 import CalendarIcon from "../assets/images/top-panel/calendar.png";
 import NotificationIcon from "../assets/images/top-panel/notification.png";
 import ProfileIcon from "../assets/images/top-panel/profile.png";
-import MainContent from "./MainContent";
+import MainContent from "./MainContent/MainContent";
 import FilterPanel from "./FilterPanel";
+import { useSelector } from "react-redux";
 
 const TopPanel = () => {
     const classes = useStyles();
+    const applicants = useSelector((state) => state.ApplicantsData.applicants);
     const [selectedTab, setSelectedTab] = useState(1);
+    const [jobTitle, setJobTitle] = useState("All");
+
+    const generateJobTitleArr = () => {
+        if (applicants.results) {
+            return applicants.results.map((item) => item.job_title);
+        } else return [];
+    };
+
+    const getOnlyUnique = (value, index, self) => {
+        return self.indexOf(value) === index;
+    };
+
+    const handleJobTitle = (event) => {
+        setJobTitle(event.target.value);
+    };
 
     return (
         <Fragment>
@@ -66,12 +83,18 @@ const TopPanel = () => {
                         </Typography>
                         <Select
                             variant="outlined"
-                            value={10}
+                            value={jobTitle}
                             className={classes.dropdown}
+                            onChange={handleJobTitle}
                         >
-                            <MenuItem value={10}>All Applications</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
+                            <MenuItem value={"All"}>All Applications</MenuItem>
+                            {generateJobTitleArr()
+                                .filter(getOnlyUnique)
+                                .map((item, index) => (
+                                    <MenuItem key={index} value={item}>
+                                        {item}
+                                    </MenuItem>
+                                ))}
                         </Select>
                     </Box>
                     <InputBase
@@ -350,7 +373,7 @@ const TopPanel = () => {
                     className={classes.mainContentBox}
                     style={{ marginTop: "200px" }}
                 >
-                    <MainContent />
+                    <MainContent jobTitle={jobTitle} />
                 </Box>
                 <Box className={classes.filterPanel} paddingTop="210px">
                     <FilterPanel />

@@ -10,33 +10,47 @@ import {
     Typography,
     CircularProgress,
 } from "@material-ui/core";
-import Dp from "../assets/images/content-box/dp.png";
+import Dp from "../../assets/images/content-box/dp.png";
 import Axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { getApplicants, filterList } from "./action";
 
-const MainContent = () => {
+const MainContent = ({ jobTitle }) => {
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const applicants = useSelector((state) => state.ApplicantsData.applicants);
+    const filteredApplicantsList = useSelector(
+        (state) => state.ApplicantsData.filteredApplicantsList
+    );
+
     const [checked, setChecked] = React.useState(true);
-    const [applicants, setApplicants] = useState("");
-
-    const getJobApplicants = async () => {
-        const res = await Axios.get(
-            "http://54.162.60.38/job/company/applicants/?company_id=Mg=="
-        ).catch((err) => {
-            throw err;
-        });
-
-        setApplicants(res.data.data);
-    };
+    const [loader, setLoader] = useState(true);
+    //const [filteredApplicantsList, setFilteredApplicantsList] = useState([]);
 
     useEffect(() => {
-        getJobApplicants();
+        dispatch(getApplicants(setLoader));
     }, []);
 
     const handleChange = (event) => {
         setChecked(event.target.checked);
     };
 
-    return applicants !== "" ? (
+    useEffect(() => {
+        if (!loader) {
+            if (jobTitle === "All") {
+                dispatch(filterList(applicants.results));
+            } else
+                dispatch(
+                    filterList(
+                        applicants.results.filter(
+                            (item) => item.job_title === jobTitle
+                        )
+                    )
+                );
+        }
+    }, [loader, jobTitle]);
+
+    return !loader ? (
         <Box width="100%">
             <Box className={classes.contentBox}>
                 <Box
@@ -61,7 +75,7 @@ const MainContent = () => {
                 </Box>
                 <Divider className={classes.divider} />
                 <Box height="500px" overflow="scroll">
-                    {applicants.results.map((item, index) =>
+                    {filteredApplicantsList.map((item, index) =>
                         item.applicants.map((appItem, index) => (
                             <Box padding="2%" key={index}>
                                 <Box className={classes.profileCard}>
