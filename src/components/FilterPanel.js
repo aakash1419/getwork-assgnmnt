@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     Box,
     makeStyles,
@@ -59,7 +59,20 @@ const FilterPanel = () => {
         (state) => state.ApplicantsData.filteredApplicantsList
     );
 
-    return (
+    const [locationsArr, setLocationsArr] = useState([]);
+
+    const pushLocation = (value) => {
+        let sampleArr = locationsArr;
+        sampleArr.push(value);
+
+        setLocationsArr(sampleArr);
+    };
+
+    const handleLocation = (event, value) => {
+        pushLocation(value.city);
+    };
+
+    return filteredApplicantsList.length ? (
         <Box>
             <Typography className={classes.panelTitle}>Filters</Typography>
             <Divider className={classes.divider} />
@@ -73,42 +86,29 @@ const FilterPanel = () => {
                     alignItems="center"
                 >
                     <Typography className={classes.filterBoxSubtitle}>
-                        Gurgaon, Delhi
+                        {locationsArr.map((item) => `${item},`)}
                     </Typography>
                     <img src={CrossIcon} alt="cross-icon" />
                 </Box>
-                {/* <InputBase
+                <InputBase
                     className={classes.inputBox}
                     placeholder="Add Location"
-                /> */}
-                <Autocomplete
-                    multiple
-                    id="checkboxes-tags-demo"
-                    options={top100Films}
-                    disableCloseOnSelect
-                    getOptionLabel={(option) => option.title}
-                    renderOption={(option, { selected }) => (
-                        <React.Fragment>
-                            <Checkbox
-                                icon={icon}
-                                checkedIcon={checkedIcon}
-                                style={{ marginRight: 8 }}
-                                checked={selected}
-                            />
-                            {option.title}
-                        </React.Fragment>
-                    )}
-                    //style={{ width: 500 }}
-                    className={classes.inputBox}
+                />
+                {/* <Autocomplete
+                    id="combo-box-demo"
+                    clearOnBlur={true}
+                    options={filteredApplicantsList}
+                    getOptionLabel={(option) => option.city}
+                    style={{ width: 150 }}
+                    onChange={handleLocation}
                     renderInput={(params) => (
                         <TextField
                             {...params}
+                            label="Combo box"
                             variant="outlined"
-                            label="Checkboxes"
-                            placeholder="Favorites"
                         />
                     )}
-                />
+                /> */}
 
                 <Divider className={classes.divider2} />
 
@@ -171,7 +171,7 @@ const FilterPanel = () => {
                 />
             </Box>
         </Box>
-    );
+    ) : null;
 };
 
 const useStyles = makeStyles((theme) =>

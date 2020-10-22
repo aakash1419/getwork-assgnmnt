@@ -16,12 +16,15 @@ import NotificationIcon from "../assets/images/top-panel/notification.png";
 import ProfileIcon from "../assets/images/top-panel/profile.png";
 import MainContent from "./MainContent/MainContent";
 import FilterPanel from "./FilterPanel";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { changeApplicantStatus } from "./MainContent/action";
 
 const TopPanel = () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
     const applicants = useSelector((state) => state.ApplicantsData.applicants);
-    const [selectedTab, setSelectedTab] = useState(1);
+    const status = useSelector((state) => state.ApplicantsData.applicantStatus);
+
     const [jobTitle, setJobTitle] = useState("All");
 
     const generateJobTitleArr = () => {
@@ -116,9 +119,11 @@ const TopPanel = () => {
                         justifyContent="space-around"
                     >
                         <Box
-                            onClick={() => setSelectedTab(1)}
+                            onClick={() =>
+                                dispatch(changeApplicantStatus("Applied"))
+                            }
                             style={
-                                selectedTab === 1
+                                status === "Applied"
                                     ? {
                                           display: "flex",
                                           alignItems: "center",
@@ -147,7 +152,7 @@ const TopPanel = () => {
                         >
                             <Typography
                                 className={
-                                    selectedTab === 1
+                                    status === "Applied"
                                         ? classes.selectedTabText
                                         : classes.normalTabText
                                 }
@@ -156,9 +161,11 @@ const TopPanel = () => {
                             </Typography>
                         </Box>
                         <Box
-                            onClick={() => setSelectedTab(2)}
+                            onClick={() =>
+                                dispatch(changeApplicantStatus("Review"))
+                            }
                             style={
-                                selectedTab === 2
+                                status === "Review"
                                     ? {
                                           display: "flex",
                                           alignItems: "center",
@@ -189,7 +196,7 @@ const TopPanel = () => {
                         >
                             <Typography
                                 className={
-                                    selectedTab === 2
+                                    status === "Review"
                                         ? classes.selectedTabText
                                         : classes.normalTabText
                                 }
@@ -198,9 +205,11 @@ const TopPanel = () => {
                             </Typography>
                         </Box>
                         <Box
-                            onClick={() => setSelectedTab(3)}
+                            onClick={() =>
+                                dispatch(changeApplicantStatus("Shortlisted"))
+                            }
                             style={
-                                selectedTab === 3
+                                status === "Shortlisted"
                                     ? {
                                           display: "flex",
                                           alignItems: "center",
@@ -231,7 +240,7 @@ const TopPanel = () => {
                         >
                             <Typography
                                 className={
-                                    selectedTab === 3
+                                    status === "Shortlisted"
                                         ? classes.selectedTabText
                                         : classes.normalTabText
                                 }
@@ -240,9 +249,11 @@ const TopPanel = () => {
                             </Typography>
                         </Box>
                         <Box
-                            onClick={() => setSelectedTab(4)}
+                            onClick={() =>
+                                dispatch(changeApplicantStatus("Interview"))
+                            }
                             style={
-                                selectedTab === 4
+                                status === "Interview"
                                     ? {
                                           display: "flex",
                                           alignItems: "center",
@@ -273,7 +284,7 @@ const TopPanel = () => {
                         >
                             <Typography
                                 className={
-                                    selectedTab === 4
+                                    status === "Interview"
                                         ? classes.selectedTabText
                                         : classes.normalTabText
                                 }
@@ -282,9 +293,11 @@ const TopPanel = () => {
                             </Typography>
                         </Box>
                         <Box
-                            onClick={() => setSelectedTab(5)}
+                            onClick={() =>
+                                dispatch(changeApplicantStatus("Rejected"))
+                            }
                             style={
-                                selectedTab === 5
+                                status === "Rejected"
                                     ? {
                                           display: "flex",
                                           alignItems: "center",
@@ -315,7 +328,7 @@ const TopPanel = () => {
                         >
                             <Typography
                                 className={
-                                    selectedTab === 5
+                                    status === "Rejected"
                                         ? classes.selectedTabText
                                         : classes.normalTabText
                                 }
@@ -324,9 +337,11 @@ const TopPanel = () => {
                             </Typography>
                         </Box>
                         <Box
-                            onClick={() => setSelectedTab(6)}
+                            onClick={() =>
+                                dispatch(changeApplicantStatus("Hired"))
+                            }
                             style={
-                                selectedTab === 6
+                                status === "Hired"
                                     ? {
                                           display: "flex",
                                           alignItems: "center",
@@ -357,7 +372,7 @@ const TopPanel = () => {
                         >
                             <Typography
                                 className={
-                                    selectedTab === 6
+                                    status === "Hired"
                                         ? classes.selectedTabText
                                         : classes.normalTabText
                                 }

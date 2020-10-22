@@ -1,6 +1,10 @@
-import { GET_APPLICANTS, FILTER_LIST } from "./action";
+import { GET_APPLICANTS, FILTER_LIST, CHANGE_APPLICANT_STATUS } from "./action";
 
-const initialState = { applicants: {}, filteredApplicantsList: [] };
+const initialState = {
+    applicants: {},
+    filteredApplicantsList: [],
+    applicantStatus: "Applied",
+};
 
 const ApplicantsData = (state = initialState, action) => {
     switch (action.type) {
@@ -8,6 +12,8 @@ const ApplicantsData = (state = initialState, action) => {
             return { ...state, applicants: action.payload };
         case FILTER_LIST:
             return { ...state, filteredApplicantsList: action.payload };
+        case CHANGE_APPLICANT_STATUS:
+            return { ...state, applicantStatus: action.payload };
         default:
             return state;
     }
